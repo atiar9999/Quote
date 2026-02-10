@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Master Pro | Fuel Your Growth, One Quote at a Time</title>
+    <meta name="description" content="An elite web application for personal development enthusiasts featuring curated inspirational quotes across 15+ categories.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💭</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header" role="banner">
+        <nav class="nav container" aria-label="Main navigation">
+            <a href="#hero" class="logo" aria-label="Quote Master Pro - Home">
+                <div class="logo__icon" aria-hidden="true">Q</div>
+                <h1 class="logo__text">QuoteMaster Pro</h1>
+            </a>
+            
+            <div class="nav__controls">
+                <button id="search-btn" class="btn btn--icon" aria-label="Search quotes" aria-expanded="false">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+                <button id="random-btn" class="btn btn--icon" aria-label="Get random quote">
+                    <i class="fas fa-random" aria-hidden="true"></i>
+                </button>
+                <button id="favorites-btn" class="btn btn--icon" aria-label="View favorites">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                    <span class="favorites-count" id="favorites-count" aria-hidden="true">0</span>
+                </button>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+                    <span class="theme-toggle__slider" aria-hidden="true"></span>
+                    <span class="sr-only">Toggle dark mode</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="hero" aria-labelledby="hero-title">
+            <canvas id="particle-canvas" class="hero__canvas" aria-hidden="true"></canvas>
+            <div class="hero__background" aria-hidden="true"></div>
+            
+            <div class="container hero__container">
+                <h2 id="hero-title" class="hero__title">Quote Master Pro</h2>
+                <p class="hero__tagline">Fuel Your Growth, One Quote at a Time</p>
+                
+                <div class="dynamic-headline" aria-live="polite">
+                    <span class="headline-word" data-index="0">Transform Your Mindset</span>
+                    <span class="headline-word" data-index="1">Empower Your Journey</span>
+                    <span class="headline-word" data-index="2">Inspire Daily Action</span>
+                </div>
+
+                <!-- Quote of the Day -->
+                <article class="quote-of-day" aria-label="Quote of the Day">
+                    <span class="quote-of-day__label">Quote of the Day</span>
+                    <div class="quote-of-day__content">
+                        <blockquote class="quote-of-day__text">
+                            The only way to do great work is to love what you do.
+                        </blockquote>
+                        <p class="quote-of-day__author">— Steve Jobs, Co-founder of Apple</p>
+                    </div>
+                    <div class="quote-of-day__actions">
+                        <button class="btn btn--primary copy-quote-btn" data-quote-id="qod-1">
+                            <i class="fas fa-copy" aria-hidden="true"></i> Copy Quote
+                        </button>
+                        <button class="btn btn--secondary share-quote-btn" data-quote-id="qod-1">
+                            <i class="fas fa-share-alt" aria-hidden="true"></i> Share
+                        </button>
+                        <button class="btn btn--secondary favorite-quote-btn" data-quote-id="qod-1">
+                            <i class="fas fa-heart" aria-hidden="true"></i> Favorite
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator" aria-label="Scroll to explore categories">
+                <span class="scroll-indicator__text">Explore Categories</span>
+                <div class="scroll-indicator__line" aria-hidden="true"></div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories" id="categories" aria-labelledby="categories-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="categories-title" class="section-title">Curated Categories</h2>
+                    <p class="section-subtitle">Browse through 15+ carefully curated categories to find the perfect inspiration for your current focus.</p>
+                </div>
+                
+                <div class="categories-grid" id="categories-grid" role="list" aria-label="Quote categories">
+                    <!-- Categories loaded by JavaScript -->
+                </div>
+                
+                <div class="text-center">
+                    <button id="explore-all-btn" class="btn btn--primary">
+                        <i class="fas fa-compass" aria-hidden="true"></i> Explore All Categories
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Display Section -->
+        <section class="quotes-section" id="quotes-section" aria-labelledby="quotes-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="quotes-title" class="section-title">Motivational Quotes</h2>
+                    <p id="quotes-subtitle" class="section-subtitle">Curated wisdom to inspire and motivate your journey</p>
+                </div>
+                
+                <!-- Loading Skeleton -->
+                <div class="quotes-grid" id="quotes-grid" role="list" aria-label="Quotes list">
+                    <!-- Quotes loaded by JavaScript -->
+                </div>
+                
+                <div class="text-center">
+                    <button id="load-more-btn" class="btn btn--primary" style="display: none;">
+                        <i class="fas fa-plus" aria-hidden="true"></i> Load More Quotes
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="search-modal" role="dialog" aria-labelledby="search-modal-title" aria-hidden="true">
+        <div class="search-modal__backdrop"></div>
+        <div class="search-modal__content">
+            <div class="search-modal__header">
+                <h3 id="search-modal-title" class="search-modal__title">
+                    <i class="fas fa-search" aria-hidden="true"></i> Search Quotes
+                </h3>
+                <button class="search-modal__close" aria-label="Close search">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <div class="search-modal__body">
+                <div class="search-input-wrapper">
+                    <input type="search" 
+                           id="search-input" 
+                           class="search-input" 
+                           placeholder="Search quotes, authors, or categories..."
+                           aria-label="Search quotes"
+                           autocomplete="off">
+                    <div class="search-input__icon">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+                
+                <div class="search-results" id="search-results" aria-live="polite">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+            
+            <div class="search-modal__footer">
+                <div class="keyboard-hint">
+                    <span class="key">ESC</span> to close • <span class="key">Enter</span> to search
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Helper -->
+    <aside class="keyboard-shortcuts" id="keyboard-shortcuts" aria-label="Keyboard shortcuts">
+        <button class="keyboard-shortcuts__toggle" aria-label="Show keyboard shortcuts">
+            <i class="fas fa-keyboard" aria-hidden="true"></i>
+        </button>
+        <div class="keyboard-shortcuts__panel">
+            <h3 class="keyboard-shortcuts__title">Keyboard Shortcuts</h3>
+            <div class="keyboard-shortcuts__list">
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">R</kbd>
+                    <span class="shortcut-description">Random Quote</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">S</kbd>
+                    <span class="shortcut-description">Search</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">ESC</kbd>
+                    <span class="shortcut-description">Close Modals</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">/</kbd>
+                    <span class="shortcut-description">Focus Search</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">⌘D</kbd>
+                    <span class="shortcut-description">Toggle Theme</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__title">Quote Master Pro</h3>
+                    <p>Your daily companion for personal growth and inspiration. Fuel your journey with curated wisdom from the world's greatest minds.</p>
+                </div>
+                
+                <div class="footer__section">
+                    <h3 class="footer__title">Quick Links</h3>
+                    <ul class="footer__links">
+                        <li><a href="#hero" class="footer__link">Home</a></li>
+                        <li><a href="#categories" class="footer__link">Categories</a></li>
+                        <li><button id="random-quote-link" class="footer__link btn--text">Random Quote</button></li>
+                        <li><button id="favorites-link" class="footer__link btn--text">Favorites</button></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h3 class="footer__title">Connect</h3>
+                    <div class="social-links">
+                        <button class="btn btn--icon social-share-btn" data-platform="twitter" aria-label="Share on Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn--icon social-share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn--icon social-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    © 2024 Quote Master Pro. All rights reserved. 
+                    <span class="footer__love">Made with <i class="fas fa-heart" aria-hidden="true"></i> for personal growth enthusiasts.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

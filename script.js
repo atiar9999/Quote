@@ -705,8 +705,6 @@ const elements = {
   favoritesBtn: document.getElementById("favorites-btn"),
   favoritesCount: document.getElementById("favorites-count"),
 
-  // Hero Section
-  dynamicHeadline: document.querySelector(".dynamic-headline"),
 
   // Quote of the Day
   quoteOfDay: document.querySelector(".quote-of-day"),

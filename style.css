@@ -374,14 +374,7 @@ a:hover {
 }
 
 /* Dynamic Headline */
-.dynamic-headline {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    height: 3.5rem;
-    margin-bottom: var(--space-xl);
-    position: relative;
-    display: inline-block;
-    text-align: center;
-}
+
 
 .headline-word {
     position: absolute;
